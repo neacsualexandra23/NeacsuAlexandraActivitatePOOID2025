@@ -1,17 +1,13 @@
 ﻿// Alexandra-Maria Neacsu Articol A, Magazin M, Angajat N;
 #include <string>
 #include <iostream>
-#include <stdexcept>
 #include <cstring>
 #include <vector>
 #include <sstream>
-#include <fstream>
 
 using namespace std;
 
 
-class Angajat;
-class Articol;
 
 
 class Magazin {
@@ -26,19 +22,21 @@ private:
     static int nrArticole;
 
 public:
-    ~Magazin() {
-        if (this->articole != nullptr) {
-            delete[] this->articole;
-        }
-        if (this->administrator != nullptr) {
-            delete this->administrator;
-        }
-    }
+
 
     Magazin() : id(++nrMagazine) {
         this->administrator = nullptr;
         this->nume = "Necunoscut";
         this->adresa = "Necunoscuta";
+        this->articole = nullptr;
+        Magazin::nrArticole = 0;
+    }
+
+    Magazin(string adresa, int nrArt)
+        : id(++nrMagazine) {
+        this->adresa = adresa;
+        this->nume = "Necunoscut";
+        this->administrator = nullptr;
         this->articole = nullptr;
         Magazin::nrArticole = 0;
     }
@@ -61,6 +59,15 @@ public:
         }
         Magazin::nrArticole = n;
     }
+
+    ~Magazin() {
+        if (this->articole != nullptr) {
+            delete[] this->articole;
+        }
+        if (this->administrator != nullptr) {
+            delete this->administrator;
+        }
+    }
 };
 
 //  pentru static members initializare
@@ -79,12 +86,7 @@ private:
     char* functie;
 
 public:
-    ~Angajat() {
-        if (this->functie != nullptr) {
-            delete[] this->functie;
-        }
-        nrAngajati--;
-    }
+   
 
     Angajat() : id(++nrAngajati) {
         this->nume = "Necunoscut";
@@ -102,6 +104,22 @@ public:
         this->functie = new char[std::strlen(functie) + 1];
         std::strcpy(this->functie, functie);
     }
+
+
+    Angajat(string nume, string prenume, long long CNP)
+        : id(++nrAngajati) {
+        this->nume = nume;
+        this->prenume = prenume;
+        this->CNP = CNP;
+        this->functie = new char[std::strlen("Necunoscut") + 1];
+        std::strcpy(this->functie, "Necunoscut");
+    }
+    ~Angajat() {
+        if (this->functie != nullptr) {
+            delete[] this->functie;
+        }
+        nrAngajati--;
+    }
 };
 int Angajat::nrAngajati = 0;
 
@@ -117,11 +135,7 @@ private:
     int nrBucati;
 
 public:
-    ~Articol() {
-        if (this->listaIngrediente != nullptr) {
-            delete[] this->listaIngrediente;
-        }
-    }
+    
 
     Articol()
         : id(++totalArticole), nume("Necunoscut"), pret(0.0f),
@@ -137,44 +151,24 @@ public:
         nrBucati(buc < 0 ? 0 : buc) {
         if (nrIngrediente > 0 && ingrediente != nullptr) {
             listaIngrediente = new string[nrIngrediente];
-            for (int i = 0; i < nrIngrediente; ++i) listaIngrediente[i] = ingrediente[i];
+            for (int i = 0; i < nrIngrediente; ++i)
+                listaIngrediente[i] = ingrediente[i];
+        }
+    }
+    ~Articol() {
+        if (this->listaIngrediente != nullptr) {
+            delete[] this->listaIngrediente;
         }
     }
 
-    // operator= pentru a permite copierea în Magazin
-    Articol& operator=(const Articol& o) {
-        if (this != &o) {
-            nume = o.nume;
-            pret = o.pret;
-            nrBucati = o.nrBucati;
-            delete[] listaIngrediente;
-            nrIngrediente = o.nrIngrediente;
-            if (nrIngrediente > 0 && o.listaIngrediente) {
-                listaIngrediente = new string[nrIngrediente];
-                for (int i = 0; i < nrIngrediente; ++i) listaIngrediente[i] = o.listaIngrediente[i];
-            }
-            else {
-                listaIngrediente = nullptr;
-            }
-        }
-        return *this;
-    }
+ 
 
-    // (opțional) copy ctor
-    Articol(const Articol& o)
-        : id(++totalArticole), nume(o.nume), pret(o.pret),
-        listaIngrediente(nullptr), nrIngrediente(o.nrIngrediente),
-        nrBucati(o.nrBucati) {
-        if (nrIngrediente > 0 && o.listaIngrediente) {
-            listaIngrediente = new string[nrIngrediente];
-            for (int i = 0; i < nrIngrediente; ++i) listaIngrediente[i] = o.listaIngrediente[i];
-        }
-    }
+   
 };
 int Articol::totalArticole = 0;
 
 
 int main() {
-    std::cout << "Hello World!\n";
+    
     return 0;
 }
