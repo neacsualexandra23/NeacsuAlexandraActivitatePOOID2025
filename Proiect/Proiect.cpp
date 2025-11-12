@@ -2,77 +2,66 @@
 
 #include <iostream>
 #include <string>
-#include <cstring>   // pentru strcpy_s
+#include <cstring>
 using namespace std;
-
-class Magazin;
-class Angajat;
-class Articol;
-
-// Functii globale (prietene) – declarate dinainte
-float valoareTotalaStoc(const Magazin& m);
-void aplicaDiscount(Magazin& m, float procent);
 
 class Angajat {
 private:
     const int id;
     static int nrAngajati;
-
     string nume;
     string prenume;
-    string cnp;      // CNP pe 13 cifre, îl păstrăm ca string
-    char* functie;   // alocat dinamic
+    string cnp;
+    char* functie;
 
 public:
-    // Destructor – eliberăm memoria din HEAP
     ~Angajat() {
-        if (functie != nullptr) {
-            delete[] functie;
-            functie = nullptr;
-        }
-        nrAngajati--;
+        delete[] functie;
     }
 
-    // Constructor implicit
-    Angajat()
-        : id(++nrAngajati), nume("Necunoscut"), prenume("Necunoscut"),
-        cnp("0000000000000") {
-        functie = new char[strlen("Necunoscut") + 1];
-        strcpy_s(functie, strlen("Necunoscut") + 1, "Necunoscut");
+    Angajat() : id(++nrAngajati) {
+        this->nume = "Necunoscut";
+        this->prenume = "Necunoscut";
+        this->cnp = "1234567890000";
+        this->functie = new char[strlen("Necunoscut") + 1];
+        strcpy_s(this->functie, strlen("Necunoscut") + 1, "Necunoscut");
     }
 
-    // Constructor cu parametri
-    Angajat(const string& nume, const string& prenume,
-        const string& cnp, const char* functie)
-        : id(++nrAngajati), nume(nume), prenume(prenume), cnp(cnp) {
+    Angajat(const string& nume, const string& prenume, const string& cnp) : id(++nrAngajati) {
+        this->nume = nume;
+        this->prenume = prenume;
+        this->cnp = cnp;
+        functie = nullptr;
+    }
+
+    Angajat(const string& nume, const string& prenume, const string& cnp, const char* functie) : id(++nrAngajati) {
+        this->nume = nume;
+        this->prenume = prenume;
+        this->cnp = cnp;
         this->functie = new char[strlen(functie) + 1];
         strcpy_s(this->functie, strlen(functie) + 1, functie);
     }
 
-    // Constructor de copiere
-    Angajat(const Angajat& other)
-        : id(++nrAngajati) {
-        nume = other.nume;
-        prenume = other.prenume;
-        cnp = other.cnp;
-
-        if (other.functie != nullptr) {
-            functie = new char[strlen(other.functie) + 1];
-            strcpy_s(functie, strlen(other.functie) + 1, other.functie);
-        }
-        else {
-            functie = nullptr;
-        }
+    Angajat(const Angajat& other) : id(++nrAngajati) {
+        this->nume = other.nume;
+        this->prenume = other.prenume;
+        this->cnp = other.cnp;
+        this->functie = new char[strlen(other.functie) + 1];
+        strcpy_s(this->functie, strlen(other.functie) + 1, other.functie);
     }
 
-  
+    string getNume() const { return nume; }
 
-    
+    void AfisareAngajat() const {
+        cout << "Angajatul: " << id << " " << nume << " " << prenume
+            << " " << cnp << " - Functie: "
+            << (functie ? functie : "Necunoscut") << endl;
+    }
+
+    Angajat& operator=(const Angajat& other) = delete;
 };
 
-// Definire atribut static
 int Angajat::nrAngajati = 0;
-
 
 class Articol {
 private:
@@ -81,38 +70,33 @@ private:
 
     string nume;
     float pret;
-    string* listaIngrediente; // vector alocat dinamic
+    string* listaIngrediente;
     int nrIngrediente;
     int nrBucati;
 
-    // Functiile globale au acces la private
-    friend float valoareTotalaStoc(const Magazin& m);
-    friend void aplicaDiscount(Magazin& m, float procent);
-
 public:
-    // Destructor – eliberăm HEAP
     ~Articol() {
-        if (listaIngrediente != nullptr) {
-            delete[] listaIngrediente;
-            listaIngrediente = nullptr;
-        }
-        nrArticole--;
+        delete[] listaIngrediente;
     }
 
-    // Constructor implicit
-    Articol()
-        : id(++nrArticole), nume("Necunoscut"), pret(0),
-        listaIngrediente(nullptr), nrIngrediente(0), nrBucati(0) {}
+    Articol() : id(++nrArticole) {
+        this->nume = "Necunoscut";
+        this->pret = 0;
+        this->listaIngrediente = nullptr;
+        this->nrIngrediente = 0;
+        this->nrBucati = 0;
+    }
 
-    // Constructor cu parametri (inclusiv ingrediente)
-    Articol(const string& nume, float pret, int nrBucati,
-        const string* ingrediente = nullptr, int nrIngrediente = 0)
-        : id(++nrArticole), nume(nume), pret(pret),
-        nrIngrediente(nrIngrediente), nrBucati(nrBucati) {
+    Articol(const string& nume, float pret, int nrBucati, const string* ingrediente, int nrIngrediente) : id(++nrArticole) {
+        this->nume = nume;
+        this->pret = pret;
+        this->nrBucati = nrBucati;
+        this->nrIngrediente = nrIngrediente;
+
         if (nrIngrediente > 0 && ingrediente != nullptr) {
-            listaIngrediente = new string[nrIngrediente];
+            this->listaIngrediente = new string[nrIngrediente];
             for (int i = 0; i < nrIngrediente; i++) {
-                listaIngrediente[i] = ingrediente[i];
+                this->listaIngrediente[i] = ingrediente[i];
             }
         }
         else {
@@ -121,32 +105,62 @@ public:
         }
     }
 
-    // Constructor de copiere
-    Articol(const Articol& other)
-        : id(++nrArticole) {
-        nume = other.nume;
-        pret = other.pret;
-        nrBucati = other.nrBucati;
-        nrIngrediente = other.nrIngrediente;
+    Articol(const Articol& other) : id(++nrArticole) {
+        this->nume = other.nume;
+        this->pret = other.pret;
+        this->nrBucati = other.nrBucati;
+        this->nrIngrediente = other.nrIngrediente;
 
-        if (other.listaIngrediente != nullptr && nrIngrediente > 0) {
-            listaIngrediente = new string[nrIngrediente];
+        if (other.listaIngrediente != nullptr && other.nrIngrediente > 0) {
+            this->listaIngrediente = new string[nrIngrediente];
             for (int i = 0; i < nrIngrediente; i++) {
-                listaIngrediente[i] = other.listaIngrediente[i];
+                this->listaIngrediente[i] = other.listaIngrediente[i];
             }
         }
         else {
-            listaIngrediente = nullptr;
-            nrIngrediente = 0;
+            this->listaIngrediente = nullptr;
+            this->nrIngrediente = 0;
         }
     }
 
- 
+    Articol& operator=(const Articol& other) {
+        if (this != &other) {
+            this->nume = other.nume;
+            this->pret = other.pret;
+            this->nrBucati = other.nrBucati;
+            delete[] listaIngrediente;
 
-   
+            this->nrIngrediente = other.nrIngrediente;
+            if (nrIngrediente > 0 && other.listaIngrediente != nullptr) {
+                listaIngrediente = new string[nrIngrediente];
+                for (int i = 0; i < nrIngrediente; ++i) {
+                    listaIngrediente[i] = other.listaIngrediente[i];
+                }
+            }
+            else {
+                listaIngrediente = nullptr;
+            }
+        }
+        return *this;
+    }
+
+    string getNume() const { return nume; }
+
+    void AfisareArticol() const {
+        cout << "Articol " << id << ": " << nume << ", Pret: " << pret
+            << " RON, Bucati: " << nrBucati << "\nIngrediente:";
+        if (listaIngrediente != nullptr) {
+            for (int i = 0; i < nrIngrediente; i++) {
+                cout << " " << listaIngrediente[i];
+            }
+        }
+        else {
+            cout << " Fara ingrediente.";
+        }
+        cout << endl;
+    }
 };
 
-// Definire atribut static
 int Articol::nrArticole = 0;
 
 class Magazin {
@@ -154,49 +168,36 @@ private:
     string nume;
     const int id;
     static int nrMagazine;
-    static int codCaen;     
 
     string adresa;
-    Angajat* administrator; // 
-    Articol* articole;      // vector dinamic de articole
+    Angajat* administrator;
+    Articol* articole;
     int nrArticole;
 
-    // Functii prietene
-    friend float valoareTotalaStoc(const Magazin& m);
-    friend void aplicaDiscount(Magazin& m, float procent);
-
 public:
-    // Destructor – ștergem din HEAP
     ~Magazin() {
-        if (administrator != nullptr) {
-            delete administrator;
-            administrator = nullptr;
-        }
-        if (articole != nullptr) {
-            delete[] articole;
-            articole = nullptr;
-        }
-        nrMagazine--;
+        delete administrator;
+        delete[] articole;
     }
 
-    // Constructor implicit
-    Magazin()
-        : nume("Necunoscut"), id(++nrMagazine),
-        adresa("Necunoscuta"), administrator(nullptr),
-        articole(nullptr), nrArticole(0) {}
+    Magazin() : id(++nrMagazine) {
+        this->nume = "Necunoscut";
+        this->adresa = "Necunoscuta";
+        this->administrator = nullptr;
+        this->articole = nullptr;
+        this->nrArticole = 0;
+    }
 
-    // Constructor cu parametri
-    Magazin(const string& nume, const string& adresa,
-        const Angajat& admin,
-        const Articol* articole, int nrArticole)
-        : nume(nume), id(++nrMagazine),
-        adresa(adresa), nrArticole(nrArticole) {
-        administrator = new Angajat(admin);
+    Magazin(const string& nume, const string& adresa, const Angajat& admin, const Articol* articoleInput, int nrArticole) : id(++nrMagazine) {
+        this->nume = nume;
+        this->adresa = adresa;
+        this->nrArticole = nrArticole;
+        this->administrator = new Angajat(admin);
 
-        if (nrArticole > 0 && articole != nullptr) {
+        if (nrArticole > 0 && articoleInput != nullptr) {
             this->articole = new Articol[nrArticole];
-            for (int i = 0; i < nrArticole; i++) {
-                this->articole[i] = articole[i]; // folosește copy
+            for (int i = 0; i < nrArticole; ++i) {
+                this->articole[i] = articoleInput[i];
             }
         }
         else {
@@ -205,77 +206,70 @@ public:
         }
     }
 
-    // Constructor de copiere
-    Magazin(const Magazin& other)
-        : nume(other.nume), id(++nrMagazine),
-        adresa(other.adresa), nrArticole(other.nrArticole) {
-
-        if (other.administrator != nullptr) {
-            administrator = new Angajat(*other.administrator);
-        }
-        else {
-            administrator = nullptr;
-        }
+    Magazin(const Magazin& other) : id(++nrMagazine) {
+        this->nume = other.nume;
+        this->adresa = other.adresa;
+        this->nrArticole = other.nrArticole;
+        this->administrator = other.administrator ? new Angajat(*other.administrator) : nullptr;
 
         if (other.articole != nullptr && nrArticole > 0) {
-            articole = new Articol[nrArticole];
-            for (int i = 0; i < nrArticole; i++) {
-                articole[i] = other.articole[i];
+            this->articole = new Articol[nrArticole];
+            for (int i = 0; i < nrArticole; ++i) {
+                this->articole[i] = other.articole[i];
             }
         }
         else {
-            articole = nullptr;
-            nrArticole = 0;
+            this->articole = nullptr;
         }
     }
 
+    void Afisare() const {
+        cout << "Magazinul " << id << ": " << nume << ", " << adresa << "\nAdministrator: ";
+        if (administrator) {
+            cout << administrator->getNume();
+        }
+        else {
+            cout << "Fara administrator";
+        }
+        cout << "\nArticole: ";
+        if (articole) {
+            for (int i = 0; i < nrArticole; ++i) {
+                cout << articole[i].getNume() << " ";
+            }
+        }
+        else {
+            cout << "Niciun articol.";
+        }
+        cout << "\n\n";
+    }
 };
 
-// Definire atribute statice
 int Magazin::nrMagazine = 0;
-int Magazin::codCaen = 4724;
-
-
-
-// 1. Calculează valoarea totală a stocului dintr-un magazin
-float valoareTotalaStoc(const Magazin& m) {
-    float suma = 0;
-    for (int i = 0; i < m.nrArticole; i++) {
-        suma += m.articole[i].pret * m.articole[i].nrBucati;
-    }
-    return suma;
-}
-
-// 2. Aplică un discount (%) tuturor articolelor din magazin
-void aplicaDiscount(Magazin& m, float procent) {
-    for (int i = 0; i < m.nrArticole; i++) {
-        m.articole[i].pret = m.articole[i].pret * (1 - procent / 100.0f);
-    }
-}
-
 
 int main() {
-    // Test Angajat
-    Angajat a1("Popescu", "Ion", "1234567890123", "Administrator");
-    
+    Angajat angajat1;
+    Angajat angajat2("Popescu", "Ion", "1234567890000", "Administrator");
+    Angajat angajat3("Ionescu", "Maria", "2123456789000");
 
-    Angajat a2 = a1;  // constructor de copiere
-   
+    angajat1.AfisareAngajat();
+    angajat2.AfisareAngajat();
+    angajat3.AfisareAngajat();
 
-    // Test Articol
-    string ingr1[] = { "Faina", "Apa", "Drojdie" };
-    Articol art1("Paine", 5.0f, 100, ingr1, 3);
+    string ingrediente[] = { "Faina", "Apa", "Sare" };
+    Articol articol1("Paine", 5.5f, 100, ingrediente, 3);
+    Articol articol2;
+    Articol articol3 = articol1;
 
-    string ingr2[] = { "Zahar", "Arome" };
-    Articol art2("Suc", 4.5f, 50, ingr2, 2);
+    articol1.AfisareArticol();
+    articol2.AfisareArticol();
+    articol3.AfisareArticol();
 
-    // Vector de articole pentru magazin
-    Articol listaArticole[] = { art1, art2 };
+    Articol lista[] = { articol1, articol2 };
+    Magazin m1("Mega Image", "Bd. Unirii", angajat2, lista, 2);
+    m1.Afisare();
 
+    Magazin m2 = m1;
+    m2.Afisare();
 
-    // Test Magazin
-    Magazin m1("Magazin Central", "Str. Principala nr.1", a1, listaArticole, 2);
-
-   
     return 0;
 }
