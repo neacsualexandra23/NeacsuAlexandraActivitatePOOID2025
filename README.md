@@ -21,3 +21,16 @@ apelați toți constructorii.
 Realizati toate clasele in acelasi fisier CPP, una sub cealalta, iar in partea de final a fisierului cu
 cod sursa implementati functia main in cadrul careia testati toti constructorii implementati pentru
 clasele implementate
+
+Proiect - Faza 2  👍
+====================
+Pentru clasele de la tema precedentă treceți atributele din zona publică a clasei în zona private.
+În cele trei clase trebuie să implementați destructorii astfel încât să ștergeți memoria alocată în
+HEAP. Implementati si constructorul de copiere pentru toate clasele
+Pentru toate atributele trecute acum în zona private a clasei realizați metode de acces la acestea:
+get-eri și set-eri.
+Pentru atributele statice realizați funcții statice pentru a oferi acces la acestea.
+Realizați două funcții globale care să realizeze anumite prelucrări/procesări (la alegere) și să
+folosească obiecte de tipul claselor implementate. Cele două funcții vor fi prietene cu clasele ale
+căror obiecte sunt folosite, astfel încât să aibă acces la atributele private.
+În funcția main apelați toate metodele și funcțiile implementate pentru a le testa. Cu ajutorul geterilor să și afișați valorile atributelor.
