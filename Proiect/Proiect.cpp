@@ -79,7 +79,28 @@ public:
         else return "Necunoscut";
     }
 
+    void setNume(const string& nume) {
+        this->nume = nume;
+    }
 
+    void setPrenume(const string& prenume) {
+        this->prenume = prenume;
+    }
+
+    void setCnp(const string& cnp) {
+        this->cnp = cnp;
+    }
+
+    void setFunctie(const char* functieNoua) {
+        if (functieNoua == nullptr) return;
+
+        // stergem ce era inainte
+        delete[] functie;
+
+        // alocam memorie noua
+        functie = new char[strlen(functieNoua) + 1];
+        strcpy_s(functie, strlen(functieNoua) + 1, functieNoua);
+    }
     void AfisareAngajat() const {
         cout << "Angajatul: " << id << " " << nume << " " << prenume
             << " " << cnp << " - Functie: "
