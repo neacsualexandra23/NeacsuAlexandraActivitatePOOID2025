@@ -366,7 +366,43 @@ public:
     const Articol* getArticole() const {
         return articole;
     }
+    void setNume(const string& numeNou) {
+        this->nume = numeNou;
+    }
 
+    void setAdresa(const string& adresaNoua) {
+        this->adresa = adresaNoua;
+    }
+
+    void setAdministrator(const Angajat& adminNou) {
+        // stergem administratorul vechi
+        delete this->administrator;
+
+        // Copiem obiectul
+        this->administrator = new Angajat(adminNou);
+    }
+
+    void setArticole(const Articol* articoleNoi, int nrArticoleNoi) {
+        // Curatam vechile articole
+        delete[] this->articole;
+
+        if (articoleNoi != nullptr && nrArticoleNoi > 0) {
+            this->nrArticole = nrArticoleNoi;
+            this->articole = new Articol[nrArticoleNoi];
+            for (int i = 0; i < nrArticoleNoi; ++i) {
+                this->articole[i] = articoleNoi[i];
+            }
+        }
+        else {
+            this->articole = nullptr;
+            this->nrArticole = 0;
+        }
+    }
+
+    void setNrArticole(int nrNou) {
+        // seteaza doar numarul  nu modifica lista
+        this->nrArticole = nrNou;
+    }
 
     void Afisare() const {
         cout << "Magazinul " << id << ": " << nume << ", " << adresa << "\nAdministrator: ";
