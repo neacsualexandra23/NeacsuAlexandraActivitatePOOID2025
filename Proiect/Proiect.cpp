@@ -174,6 +174,35 @@ public:
         }
     }
 
+    int getId() const {
+        return id;
+    }
+
+    static int getNrArticole() {
+        return nrArticole;
+    }
+
+    string getNume() const {
+        return nume;
+    }
+
+    float getPret() const {
+        return pret;
+    }
+
+    int getNrBucati() const {
+        return nrBucati;
+    }
+
+    int getNrIngrediente() const {
+        return nrIngrediente;
+    }
+
+    const string* getListaIngrediente() const {
+        return listaIngrediente;  
+    }
+
+
     Articol& operator=(const Articol& other) {
         if (this != &other) {
             this->nume = other.nume;
