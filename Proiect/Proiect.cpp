@@ -203,6 +203,41 @@ public:
     }
 
 
+    void setNume(const string& nume) {
+        this->nume = nume;
+    }
+
+    void setPret(float pret) {
+        this->pret = pret;
+    }
+
+    void setNrBucati(int nrBucati) {
+        this->nrBucati = nrBucati;
+    }
+
+    void setListaIngrediente(const string* ingrediente, int nrIngredienteNou) {
+        // eliberam memoria veche
+        delete[] this->listaIngrediente;
+
+        if (ingrediente != nullptr && nrIngredienteNou > 0) {
+            this->nrIngrediente = nrIngredienteNou;
+            this->listaIngrediente = new string[nrIngredienteNou];
+
+            for (int i = 0; i < nrIngredienteNou; i++) {
+                this->listaIngrediente[i] = ingrediente[i];
+            }
+        }
+        else {
+            this->listaIngrediente = nullptr;
+            this->nrIngrediente = 0;
+        }
+    }
+
+    void setNrIngrediente(int nrIngredienteNou) {
+        // doar actualizam valoarea fara modificarea listea
+        this->nrIngrediente = nrIngredienteNou;
+    }
+
     Articol& operator=(const Articol& other) {
         if (this != &other) {
             this->nume = other.nume;
