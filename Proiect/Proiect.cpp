@@ -50,7 +50,35 @@ public:
         strcpy_s(this->functie, strlen(other.functie) + 1, other.functie);
     }
 
-    string getNume() const { return nume; }
+   int getId() const {
+        return id;
+    }
+    string getNume() const {
+        return nume; 
+    }
+ 
+
+    static int getNrAngajati() {
+        return nrAngajati;
+    }
+
+  
+
+    string getPrenume() const {
+        return prenume;
+    }
+
+    string getCnp() const {
+        return cnp;
+    }
+
+    const char* getFunctie() const {
+       
+        if (functie)
+            return  functie;
+        else return "Necunoscut";
+    }
+
 
     void AfisareAngajat() const {
         cout << "Angajatul: " << id << " " << nume << " " << prenume
@@ -59,6 +87,8 @@ public:
     }
 
     Angajat& operator=(const Angajat& other) = delete;
+
+
 };
 
 int Angajat::nrAngajati = 0;
@@ -165,14 +195,15 @@ int Articol::nrArticole = 0;
 
 class Magazin {
 private:
-    string nume;
+
     const int id;
     static int nrMagazine;
-
+    string nume;
     string adresa;
     Angajat* administrator;
-    Articol* articole;
     int nrArticole;
+    Articol* articole;
+    
 
 public:
     ~Magazin() {
