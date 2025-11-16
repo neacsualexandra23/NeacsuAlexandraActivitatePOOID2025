@@ -339,6 +339,35 @@ public:
         }
     }
 
+    int getId() const {
+        return id;
+    }
+
+    static int getNrMagazine() {
+        return nrMagazine;
+    }
+
+    string getNume() const {
+        return nume;
+    }
+
+    string getAdresa() const {
+        return adresa;
+    }
+
+    Angajat* getAdministrator() const {
+        return administrator;
+    }
+
+    int getNrArticole() const {
+        return nrArticole;
+    }
+
+    const Articol* getArticole() const {
+        return articole;
+    }
+
+
     void Afisare() const {
         cout << "Magazinul " << id << ": " << nume << ", " << adresa << "\nAdministrator: ";
         if (administrator) {
