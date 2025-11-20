@@ -282,6 +282,27 @@ public:
         }
         cout << endl;
     }
+
+    friend ostream& operator<<(ostream& out, const Articol& a) {
+        out << "Articol: ID=" << a.id
+            << ", Nume=" << a.nume
+            << ", Pret=" << a.pret
+            << ", Bucati=" << a.nrBucati
+            << ", Ingrediente=(";
+
+        if (a.listaIngrediente && a.nrIngrediente > 0) {
+            for (int i = 0; i < a.nrIngrediente; i++) {
+                out << a.listaIngrediente[i];
+                if (i < a.nrIngrediente - 1) out << ", ";
+            }
+        }
+        else {
+            out << "Fara ingrediente";
+        }
+
+        out << ")]";
+        return out;
+    }
 };
 
 int Articol::nrArticole = 0;
