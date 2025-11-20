@@ -107,8 +107,16 @@ public:
             << (functie ? functie : "Necunoscut") << endl;
     }
 
-    Angajat& operator=(const Angajat& other) = delete;
+    //Angajat& operator=(const Angajat& other) = delete;
 
+    friend ostream& operator<<(ostream& out, const Angajat& a) {
+        out << "Angajat: ID=" << a.id
+            << ", Nume=" << a.nume
+            << ", Prenume=" << a.prenume
+            << ", CNP=" << a.cnp
+            << ", Functie=" << (a.functie ? a.functie : "Necunoscut");
+        return out;
+    }
 
 };
 
@@ -259,7 +267,7 @@ public:
         return *this;
     }
 
-    string getNume() const { return nume; }
+   
 
     void AfisareArticol() const {
         cout << "Articol " << id << ": " << nume << ", Pret: " << pret
@@ -432,7 +440,7 @@ int main() {
     Angajat angajat2("Popescu", "Ion", "1234567890000", "Administrator");
     Angajat angajat3("Ionescu", "Maria", "2123456789000");
 
-    angajat1.AfisareAngajat();
+    cout << angajat1 << endl;
     angajat2.AfisareAngajat();
     angajat3.AfisareAngajat();
 
