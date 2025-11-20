@@ -452,6 +452,34 @@ public:
         }
         cout << "\n\n";
     }
+
+    friend ostream& operator<<(ostream& out, const Magazin& m) {
+        out << "Magazin [ID=" << m.id
+            << ", Nume=" << m.nume
+            << ", Adresa=" << m.adresa
+            << ", Administrator=";
+
+        if (m.administrator)
+            out << m.administrator->getNume();
+        else
+            out << "N/A";
+
+        out << ", Articole=(";
+
+        if (m.articole && m.nrArticole > 0) {
+            for (int i = 0; i < m.nrArticole; i++) {
+                out << m.articole[i].getNume();
+                if (i < m.nrArticole - 1) out << ", ";
+            }
+        }
+        else {
+            out << "Niciun articol";
+        }
+
+        out << ")]";
+
+        return out;
+    }
 };
 
 int Magazin::nrMagazine = 0;
@@ -462,24 +490,26 @@ int main() {
     Angajat angajat3("Ionescu", "Maria", "2123456789000");
 
     cout << angajat1 << endl;
-    angajat2.AfisareAngajat();
-    angajat3.AfisareAngajat();
+    cout << angajat2 << endl;
+    cout << angajat3 << endl;
+   
 
     string ingrediente[] = { "Faina", "Apa", "Sare" };
     Articol articol1("Paine", 5.5f, 100, ingrediente, 3);
     Articol articol2;
     Articol articol3 = articol1;
 
-    articol1.AfisareArticol();
-    articol2.AfisareArticol();
-    articol3.AfisareArticol();
+    cout << articol1 << endl;
+    cout << articol1 << endl;
+    cout << articol1 << endl;
+   
 
     Articol lista[] = { articol1, articol2 };
     Magazin m1("Mega Image", "Bd. Unirii", angajat2, lista, 2);
-    m1.Afisare();
+    cout << m1<< endl;
 
     Magazin m2 = m1;
-    m2.Afisare();
+    cout << m2 << endl;
 
     return 0;
 }
