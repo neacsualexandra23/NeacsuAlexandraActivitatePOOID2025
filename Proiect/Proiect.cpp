@@ -504,9 +504,11 @@ int main() {
     cout << articol1 << endl;
    
 
+
     Articol lista[] = { articol1, articol2 };
     Magazin m1("Mega Image", "Bd. Unirii", angajat2, lista, 2);
     cout << m1<< endl;
+
 
     Magazin m2 = m1;
     cout << m2 << endl;
