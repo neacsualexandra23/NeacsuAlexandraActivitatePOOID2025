@@ -34,3 +34,11 @@ Realizați două funcții globale care să realizeze anumite prelucrări/proces�
 folosească obiecte de tipul claselor implementate. Cele două funcții vor fi prietene cu clasele ale
 căror obiecte sunt folosite, astfel încât să aibă acces la atributele private.
 În funcția main apelați toate metodele și funcțiile implementate pentru a le testa. Cu ajutorul geterilor să și afișați valorile atributelor.
+
+Proiect - Faza 3
+=================
+Pentru clasele de la tema precedentă supraincarcarti operatorl = (de atribuire) si minim alti trei
+operatori (cate patru operatori pentru fiecare clasa)
+Creati cel putin o functie prietena in proiect.
+In main apelati atat functia prietena cat si cei 12 operatori implementati. Va recomand ca
+operatorii sa fie diferiti, astfel incat sa aveti experienta cu toate tipurile de operatori.
