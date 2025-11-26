@@ -608,6 +608,7 @@ int main() {
         cout << "CNP-urile sunt diferite.\n";
     }
 
+
     if (!angajat1) {
         cout << "Angajat1 nu are functie setata.\n";
     }
