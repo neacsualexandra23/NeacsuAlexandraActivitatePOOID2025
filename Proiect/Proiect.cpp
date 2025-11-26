@@ -139,7 +139,15 @@ public:
         }
         return *this;
     }
+    //operator== Compară doi angajați după CNP
+    bool operator==(const Angajat& other) const {
+        return this->cnp == other.cnp;
+    }
 
+    //operator! – Verifică dacă angajatul NU are o funcție setată(null sau șir gol)
+    bool operator!() const {
+        return functie == nullptr || strlen(functie) == 0;
+    }
 };
 
 int Angajat::nrAngajati = 0;
@@ -326,34 +334,7 @@ public:
         return out;
     }
 
-    // operator=
-    Articol& operator=(const Articol& other) {
-        if (this != &other) {
-            // id rămâne (const)
-
-            nume = other.nume;
-            pret = other.pret;
-            nrBucati = other.nrBucati;
-
-            if (listaIngrediente != nullptr) {
-                delete[] listaIngrediente;
-            }
-
-            nrIngrediente = other.nrIngrediente;
-            if (other.listaIngrediente != nullptr && nrIngrediente > 0) {
-                listaIngrediente = new string[nrIngrediente];
-                for (int i = 0; i < nrIngrediente; i++) {
-                    listaIngrediente[i] = other.listaIngrediente[i];
-                }
-            }
-            else {
-                listaIngrediente = nullptr;
-                nrIngrediente = 0;
-            }
-        }
-        return *this;
-    }
-
+    
 
 };
 
@@ -619,6 +600,17 @@ int main() {
     cout << "Crestere preturi cu 10%  toate produsele magazinului" << endl;
     MarestePreturi(m1, 10);
    
+    // verificarea operatorului == si !=
+    if (angajat2 == angajat3) {
+        cout << "Angajat2 si Angajat3 au acelasi CNP.\n";
+    }
+    else {
+        cout << "CNP-urile sunt diferite.\n";
+    }
+
+    if (!angajat1) {
+        cout << "Angajat1 nu are functie setata.\n";
+    }
    
     return 0;
 
