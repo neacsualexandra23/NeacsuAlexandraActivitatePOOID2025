@@ -303,7 +303,11 @@ public:
         out << ")]";
         return out;
     }
+
+
 };
+
+
 
 int Articol::nrArticole = 0;
 
@@ -392,7 +396,7 @@ public:
         return nrArticole;
     }
 
-    const Articol* getArticole() const {
+    Articol* getArticole() const {
         return articole;
     }
     void setNume(const string& numeNou) {
@@ -480,9 +484,26 @@ public:
 
         return out;
     }
+   
+  
 };
 
 int Magazin::nrMagazine = 0;
+
+void MarestePreturi(Magazin& magazin, float procent) {
+    if (magazin.getArticole() != nullptr && magazin.getNrArticole() > 0) {
+        for (int i = 0; i < magazin.getNrArticole(); ++i) {
+            float pretNou = magazin.getArticole()[i].getPret() * (1 + procent / 100);
+            // Folosește setterul pentru a modifica pretul
+            {
+                magazin.getArticole()[i].setPret(pretNou);
+                cout << magazin.getArticole()[i].getNume() << " " ;
+                cout << pretNou << endl;
+            }
+        }
+    }
+}
+
 
 int main() {
     Angajat angajat1;
@@ -495,13 +516,13 @@ int main() {
    
 
     string ingrediente[] = { "Faina", "Apa", "Sare" };
-    Articol articol1("Paine", 5.5f, 100, ingrediente, 3);
-    Articol articol2;
+    Articol articol1("Paine alba", 5.5f, 100, ingrediente, 3);
+    Articol articol2("Paine neagra", 7.5f, 100, ingrediente, 3);;
     Articol articol3 = articol1;
 
     cout << articol1 << endl;
-    cout << articol1 << endl;
-    cout << articol1 << endl;
+    cout << articol2 << endl;
+    cout << articol3 << endl;
    
 
 
@@ -513,5 +534,10 @@ int main() {
     Magazin m2 = m1;
     cout << m2 << endl;
 
+    cout << "Crestere preturi cu 10%  toate produsele magazinului" << endl;
+    MarestePreturi(m1, 10);
+   
+   
     return 0;
+
 }
