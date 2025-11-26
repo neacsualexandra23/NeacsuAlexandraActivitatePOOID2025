@@ -535,6 +535,38 @@ public:
         return out;
     }
    
+    // operator=
+    Magazin& operator=(const Magazin& other) {
+        if (this != &other) {
+            nume = other.nume;
+            adresa = other.adresa;
+
+            // id e const, nu se modifică
+
+            if (administrator != nullptr)
+                delete administrator;
+            if (other.administrator != nullptr)
+                administrator = new Angajat(*other.administrator);
+            else
+                administrator = nullptr;
+
+            if (articole != nullptr)
+                delete[] articole;
+            nrArticole = other.nrArticole;
+            if (other.articole != nullptr && nrArticole > 0) {
+                articole = new Articol[nrArticole];
+                for (int i = 0; i < nrArticole; i++) {
+                    articole[i] = other.articole[i];
+                }
+            }
+            else {
+                articole = nullptr;
+                nrArticole = 0;
+            }
+        }
+        return *this;
+    }
+
   
 };
 
