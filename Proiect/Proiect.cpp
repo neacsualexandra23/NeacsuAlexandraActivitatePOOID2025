@@ -555,6 +555,38 @@ public:
         return *this;
     }
 
+    // adauga operatorul == (compara nume si adresa)
+    bool operator==(const Magazin& other) const {
+        return this->nume == other.nume && this->adresa == other.adresa;
+    }
+    //+=  adaugă un articol nou in lista existenta
+    Magazin& operator+=(const Articol& articolNou) {
+        // Alocare nouă listă cu un articol în plus
+        Articol* listaNoua = new Articol[nrArticole + 1];
+
+        // Copiem articolele existente
+        for (int i = 0; i < nrArticole; ++i) {
+            listaNoua[i] = articole[i];
+        }
+
+        // Adăugăm articolul nou
+        listaNoua[nrArticole] = articolNou;
+
+        // Eliberăm memoria veche
+        delete[] articole;
+
+        // Setăm noua listă
+        articole = listaNoua;
+        nrArticole++;
+
+        return *this;
+    }
+
+    Magazin operator+(const Articol& articolNou) const {
+        Magazin rezultat = *this;  // facem o copie
+        rezultat += articolNou;   // folosim deja definit operator+=
+        return rezultat;
+    }
   
 };
 
@@ -587,7 +619,7 @@ int main() {
 
     string ingrediente[] = { "Faina", "Apa", "Sare" };
     Articol articol1("Paine alba", 5.5f, 100, ingrediente, 3);
-    Articol articol2("Paine neagra", 7.5f, 100, ingrediente, 3);;
+    Articol articol2("Paine neagra", 7.5f, 100, ingrediente, 3);
     Articol articol3 = articol1;
 
     cout << articol1 << endl;
@@ -639,6 +671,11 @@ int main() {
         cout << "Articol1 nu este mai ieftin decat Articol2.\n";
     }
     
+
+    // operatorul + pentru a adauga un articol in magazin
+    Articol articolNou("Paine de secara", 10.5f, 100, ingrediente, 3);
+    Magazin m4 = m1 + articolNou;
+    cout << m4 << endl;
 
     return 0;
 
