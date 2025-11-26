@@ -118,6 +118,28 @@ public:
         return out;
     }
 
+    // operator=
+    Angajat& operator=(const Angajat& other) {
+        if (this != &other) {
+            // id rămâne neschimbat (e const)
+            nume = other.nume;
+            prenume = other.prenume;
+            cnp = other.cnp;
+
+            if (functie != nullptr) {
+                delete[] functie;
+            }
+            if (other.functie != nullptr) {
+                functie = new char[strlen(other.functie) + 1];
+                strcpy_s(functie, strlen(other.functie) + 1, other.functie);
+            }
+            else {
+                functie = nullptr;
+            }
+        }
+        return *this;
+    }
+
 };
 
 int Angajat::nrAngajati = 0;
