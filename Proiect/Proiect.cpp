@@ -334,7 +334,14 @@ public:
         return out;
     }
 
-    
+    //operator==  compara două articole dupa nume si  pret
+    bool operator==(const Articol& other) const {
+        return this->nume == other.nume && this->pret == other.pret;
+    }
+    //operator<  compara articole după pret
+    bool operator<(const Articol& other) const {
+        return this->pret < other.pret;
+    }
 
 };
 
@@ -601,6 +608,7 @@ int main() {
     MarestePreturi(m1, 10);
    
     // verificarea operatorului == si !=
+    cout<< "verificarea operatorului =="<< endl;
     if (angajat2 == angajat3) {
         cout << "Angajat2 si Angajat3 au acelasi CNP.\n";
     }
@@ -612,7 +620,26 @@ int main() {
     if (!angajat1) {
         cout << "Angajat1 nu are functie setata.\n";
     }
-   
+
+    //Apelare operator==  compara daca doua articole sunt identice 
+    cout << "Apelare operator==  compara daca doua articole sunt identice:" << endl;
+    if (articol1 == articol3) {
+        cout << "Articol1 si Articol3 sunt identice.\n";
+    }
+    else {
+        cout << "Articol1 si Articol3 sunt diferite.\n";
+    }
+
+    //Apelare operator<  compară pretul
+    cout << " Apelare operator<  compară pretul " << endl;
+    if (articol1 < articol2) {
+        cout << "Articol1 este mai ieftin decat Articol2.\n";
+    }
+    else {
+        cout << "Articol1 nu este mai ieftin decat Articol2.\n";
+    }
+    
+
     return 0;
 
 }
