@@ -326,6 +326,34 @@ public:
         return out;
     }
 
+    // operator=
+    Articol& operator=(const Articol& other) {
+        if (this != &other) {
+            // id rămâne (const)
+
+            nume = other.nume;
+            pret = other.pret;
+            nrBucati = other.nrBucati;
+
+            if (listaIngrediente != nullptr) {
+                delete[] listaIngrediente;
+            }
+
+            nrIngrediente = other.nrIngrediente;
+            if (other.listaIngrediente != nullptr && nrIngrediente > 0) {
+                listaIngrediente = new string[nrIngrediente];
+                for (int i = 0; i < nrIngrediente; i++) {
+                    listaIngrediente[i] = other.listaIngrediente[i];
+                }
+            }
+            else {
+                listaIngrediente = nullptr;
+                nrIngrediente = 0;
+            }
+        }
+        return *this;
+    }
+
 
 };
 
