@@ -35,8 +35,8 @@ folosească obiecte de tipul claselor implementate. Cele două funcții vor fi p
 căror obiecte sunt folosite, astfel încât să aibă acces la atributele private.
 În funcția main apelați toate metodele și funcțiile implementate pentru a le testa. Cu ajutorul geterilor să și afișați valorile atributelor.
 
-Proiect - Faza 3
-=================
+Proiect - Faza 3 👍
+===================
 Pentru clasele de la tema precedentă supraincarcarti operatorl = (de atribuire) si minim alti trei
 operatori (cate patru operatori pentru fiecare clasa)
 Creati cel putin o functie prietena in proiect.
