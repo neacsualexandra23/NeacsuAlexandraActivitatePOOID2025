@@ -53,3 +53,16 @@ vectori separat. Daca observati ca aveti nevoie de anumiti operatori pe care nu 
 puteti sa ii supraincarcati acum.
 Creați-vă o matrice de obiecte de tipul unei clase la alegere din cele trei.
 Citiți obiectele din acea matrice și le afișați la consolă.
+
+Proiect - Faza 5
+=================
+Realizaţi o nouă clasă în proiect care să aibă cel puţin un atribut de tipul unei clase din cele trei
+pe care le-aţi implementat deja (relatie de has-a).
+Atributul poate fi un simplu obiect, un pointer, un vector de obiecte sau un vector de pointeri.
+Voi alegeţi.
+Pentru noua clasa adaugati si alte atribute pe langa acesta. Puteti sa aveti relatie de has-a si cu
+celelalte clase daca doriti.
+Pentru aceasta clasa implemetnati metodele specifice claselor, geteri si seteri pentru toate
+atributele si 3 operatori la alegere.
+Fisierul cu codul sursa il incarcati pe GITHUB in repo-ul creat in faza 0 pana pe data 22
+noiembrie 2023. Incercati sa lucrati in acelasi fisier, nu creati mai multe fisiere
