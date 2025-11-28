@@ -42,3 +42,14 @@ operatori (cate patru operatori pentru fiecare clasa)
 Creati cel putin o functie prietena in proiect.
 In main apelati atat functia prietena cat si cei 12 operatori implementati. Va recomand ca
 operatorii sa fie diferiti, astfel incat sa aveti experienta cu toate tipurile de operatori.
+
+Proiect - Faza 4
+=================
+Pentru clasele din proiect creați-vă în funcția main 3 vectori.
+Un vector cu obiecte de tipul primei clase, un vector cu obiecte de al doilea tip și cel de al treilea
+vector cu obiecte de tipul ultimei clase.
+Citiți obiectele pentru acești vectori de la tastatură și afișați-le la consolă. Parcurgeți acești
+vectori separat. Daca observati ca aveti nevoie de anumiti operatori pe care nu i-ati supraincarcat,
+puteti sa ii supraincarcati acum.
+Creați-vă o matrice de obiecte de tipul unei clase la alegere din cele trei.
+Citiți obiectele din acea matrice și le afișați la consolă.
