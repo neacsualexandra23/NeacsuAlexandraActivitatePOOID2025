@@ -677,6 +677,181 @@ int main() {
     Magazin m4 = m1 + articolNou;
     cout << m4 << endl;
 
+    int nAng, nArt, nMag;
+
+    // ---------------------- VECTOR ANGAJATI ----------------------
+    cout << "Cate obiecte Angajat doriti sa introduceti? ";
+    cin >> nAng;
+    cin.ignore();
+
+    Angajat* vAng = new Angajat[nAng];
+
+    for (int i = 0; i < nAng; i++) {
+        cout << "\n--- Angajat " << i + 1 << " ---\n";
+        string nume, prenume, cnp, functie;
+
+        cout << "Nume: ";
+        getline(cin, nume);
+
+        cout << "Prenume: ";
+        getline(cin, prenume);
+
+        cout << "CNP: ";
+        getline(cin, cnp);
+
+        cout << "Functie: ";
+        getline(cin, functie);
+
+        vAng[i].setNume(nume);
+        vAng[i].setPrenume(prenume);
+        vAng[i].setCnp(cnp);
+        vAng[i].setFunctie(functie.c_str());
+    }
+
+    cout << "\n=== AFISARE VECTOR ANGAJATI ===\n";
+    for (int i = 0; i < nAng; i++) {
+        cout << vAng[i] << endl;
+    }
+
+
+    // ---------------------- VECTOR ARTICOLE ----------------------
+    cout << "\nCate obiecte Articol doriti sa introduceti? ";
+    cin >> nArt;
+    cin.ignore();
+
+    Articol* vArt = new Articol[nArt];
+
+    for (int i = 0; i < nArt; i++) {
+        cout << "\n--- Articol " << i + 1 << " ---\n";
+        string nume;
+        float pret;
+        int nrBucati, nrIngrediente;
+
+        cout << "Nume articol: ";
+        getline(cin, nume);
+
+        cout << "Pret: ";
+        cin >> pret;
+
+        cout << "Nr. bucati: ";
+        cin >> nrBucati;
+
+        cout << "Nr. ingrediente: ";
+        cin >> nrIngrediente;
+        cin.ignore();
+
+        string* ingrediente = nullptr;
+        if (nrIngrediente > 0) {
+            ingrediente = new string[nrIngrediente];
+            for (int j = 0; j < nrIngrediente; j++) {
+                cout << "Ingredient " << j + 1 << ": ";
+                getline(cin, ingrediente[j]);
+            }
+        }
+
+        vArt[i] = Articol(nume, pret, nrBucati, ingrediente, nrIngrediente);
+
+        delete[] ingrediente;
+    }
+
+    cout << "\n=== AFISARE VECTOR ARTICOLE ===\n";
+    for (int i = 0; i < nArt; i++) {
+        cout << vArt[i] << endl;
+    }
+
+
+    // ---------------------- VECTOR MAGAZINE ----------------------
+    cout << "\nCate obiecte Magazin doriti sa introduceti? ";
+    cin >> nMag;
+    cin.ignore();
+
+    Magazin* vMag = new Magazin[nMag];
+
+    for (int i = 0; i < nMag; i++) {
+        cout << "\n--- Magazin " << i + 1 << " ---\n";
+        string nume, adresa;
+
+        cout << "Nume magazin: ";
+        getline(cin, nume);
+
+        cout << "Adresa magazin: ";
+        getline(cin, adresa);
+
+        // CITIRE ADMINISTRATOR
+        cout << "\nAdministratorul magazinului:\n";
+        string numeA, prenumeA, cnpA, functieA;
+
+        cout << "Nume administrator: ";
+        getline(cin, numeA);
+
+        cout << "Prenume administrator: ";
+        getline(cin, prenumeA);
+
+        cout << "CNP administrator: ";
+        getline(cin, cnpA);
+
+        cout << "Functie administrator: ";
+        getline(cin, functieA);
+
+        Angajat admin(numeA, prenumeA, cnpA, functieA.c_str());
+
+        // CITIRE ARTICOLE MAGAZIN
+        int k;
+        cout << "\nCate articole are magazinul? ";
+        cin >> k;
+        cin.ignore();
+
+        Articol* listaArt = new Articol[k];
+
+        for (int j = 0; j < k; j++) {
+            cout << "\nArticol " << j + 1 << " pentru magazin:\n";
+            string numeAr;
+            float pretAr;
+            int nrBuc, nrIng;
+
+            cout << "Nume articol: ";
+            getline(cin, numeAr);
+
+            cout << "Pret articol: ";
+            cin >> pretAr;
+
+            cout << "Nr bucati: ";
+            cin >> nrBuc;
+
+            cout << "Nr ingrediente: ";
+            cin >> nrIng;
+            cin.ignore();
+
+            string* ing = nullptr;
+            if (nrIng > 0) {
+                ing = new string[nrIng];
+                for (int x = 0; x < nrIng; x++) {
+                    cout << "Ingredient " << x + 1 << ": ";
+                    getline(cin, ing[x]);
+                }
+            }
+
+            listaArt[j] = Articol(numeAr, pretAr, nrBuc, ing, nrIng);
+            delete[] ing;
+        }
+
+        vMag[i] = Magazin(nume, adresa, admin, listaArt, k);
+
+        delete[] listaArt;
+    }
+
+    cout << "\n=== AFISARE VECTOR MAGAZINE ===\n";
+    for (int i = 0; i < nMag; i++) {
+        cout << vMag[i] << endl;
+    }
+
+
+    // ---------------------- ELIBERARE MEMORIE ----------------------
+    delete[] vAng;
+    delete[] vArt;
+    delete[] vMag;
+
+
     return 0;
 
 }
