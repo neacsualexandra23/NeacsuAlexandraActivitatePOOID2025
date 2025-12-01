@@ -35,10 +35,34 @@ folosească obiecte de tipul claselor implementate. Cele două funcții vor fi p
 căror obiecte sunt folosite, astfel încât să aibă acces la atributele private.
 În funcția main apelați toate metodele și funcțiile implementate pentru a le testa. Cu ajutorul geterilor să și afișați valorile atributelor.
 
-Proiect - Faza 3
-=================
+Proiect - Faza 3 👍
+===================
 Pentru clasele de la tema precedentă supraincarcarti operatorl = (de atribuire) si minim alti trei
 operatori (cate patru operatori pentru fiecare clasa)
 Creati cel putin o functie prietena in proiect.
 In main apelati atat functia prietena cat si cei 12 operatori implementati. Va recomand ca
 operatorii sa fie diferiti, astfel incat sa aveti experienta cu toate tipurile de operatori.
+
+Proiect - Faza 4
+=================
+Pentru clasele din proiect creați-vă în funcția main 3 vectori.
+Un vector cu obiecte de tipul primei clase, un vector cu obiecte de al doilea tip și cel de al treilea
+vector cu obiecte de tipul ultimei clase.
+Citiți obiectele pentru acești vectori de la tastatură și afișați-le la consolă. Parcurgeți acești
+vectori separat. Daca observati ca aveti nevoie de anumiti operatori pe care nu i-ati supraincarcat,
+puteti sa ii supraincarcati acum.
+Creați-vă o matrice de obiecte de tipul unei clase la alegere din cele trei.
+Citiți obiectele din acea matrice și le afișați la consolă.
+
+Proiect - Faza 5
+=================
+Realizaţi o nouă clasă în proiect care să aibă cel puţin un atribut de tipul unei clase din cele trei
+pe care le-aţi implementat deja (relatie de has-a).
+Atributul poate fi un simplu obiect, un pointer, un vector de obiecte sau un vector de pointeri.
+Voi alegeţi.
+Pentru noua clasa adaugati si alte atribute pe langa acesta. Puteti sa aveti relatie de has-a si cu
+celelalte clase daca doriti.
+Pentru aceasta clasa implemetnati metodele specifice claselor, geteri si seteri pentru toate
+atributele si 3 operatori la alegere.
+Fisierul cu codul sursa il incarcati pe GITHUB in repo-ul creat in faza 0 pana pe data 22
+noiembrie 2023. Incercati sa lucrati in acelasi fisier, nu creati mai multe fisiere
