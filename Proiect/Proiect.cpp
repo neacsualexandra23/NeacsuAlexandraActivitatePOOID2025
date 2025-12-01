@@ -846,10 +846,79 @@ int main() {
     }
 
 
+    //   MATRICE DE ARTICOLE  
+   
+
+    int linii, coloane;
+    cout << "\nIntroduceti numarul de linii ale matricei de Articol: ";
+    cin >> linii;
+    cout << "Introduceti numarul de coloane ale matricei de Articol: ";
+    cin >> coloane;
+    cin.ignore();
+
+    // alocare matrice Articol
+    Articol** matrice = new Articol * [linii];
+    for (int i = 0; i < linii; i++) {
+        matrice[i] = new Articol[coloane];
+    }
+
+    // citire matrice
+    for (int i = 0; i < linii; i++) {
+        for (int j = 0; j < coloane; j++) {
+            cout << "\n--- Articol pentru pozitia [" << i << "][" << j << "] ---\n";
+
+            string nume;
+            float pret;
+            int nrBucati, nrIngrediente;
+
+            cout << "Nume articol: ";
+            getline(cin, nume);
+
+            cout << "Pret: ";
+            cin >> pret;
+
+            cout << "Nr bucati: ";
+            cin >> nrBucati;
+
+            cout << "Nr ingrediente: ";
+            cin >> nrIngrediente;
+            cin.ignore();
+
+            string* ingrediente = nullptr;
+            if (nrIngrediente > 0) {
+                ingrediente = new string[nrIngrediente];
+                for (int k = 0; k < nrIngrediente; k++) {
+                    cout << "Ingredient " << k + 1 << ": ";
+                    getline(cin, ingrediente[k]);
+                }
+            }
+
+            matrice[i][j] = Articol(nume, pret, nrBucati, ingrediente, nrIngrediente);
+
+            delete[] ingrediente;
+        }
+    }
+
+    // Afișare matrice
+    cout << "\n=== AFISARE MATRICE DE ARTICOLE ===\n";
+    for (int i = 0; i < linii; i++) {
+        for (int j = 0; j < coloane; j++) {
+            cout << "[" << i << "][" << j << "] " << matrice[i][j] << endl;
+        }
+    }
+
+    // eliberare memorie
+    for (int i = 0; i < linii; i++) {
+        delete[] matrice[i];
+    }
+    delete[] matrice;
+
+
     // ---------------------- ELIBERARE MEMORIE ----------------------
     delete[] vAng;
     delete[] vArt;
     delete[] vMag;
+
 
 
     return 0;
