@@ -43,7 +43,7 @@ Creati cel putin o functie prietena in proiect.
 In main apelati atat functia prietena cat si cei 12 operatori implementati. Va recomand ca
 operatorii sa fie diferiti, astfel incat sa aveti experienta cu toate tipurile de operatori.
 
-Proiect - Faza 4
+Proiect - Faza 4 👍
 =================
 Pentru clasele din proiect creați-vă în funcția main 3 vectori.
 Un vector cu obiecte de tipul primei clase, un vector cu obiecte de al doilea tip și cel de al treilea
