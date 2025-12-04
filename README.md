@@ -54,7 +54,7 @@ puteti sa ii supraincarcati acum.
 Creați-vă o matrice de obiecte de tipul unei clase la alegere din cele trei.
 Citiți obiectele din acea matrice și le afișați la consolă.
 
-Proiect - Faza 5
+Proiect - Faza 5 👍
 =================
 Realizaţi o nouă clasă în proiect care să aibă cel puţin un atribut de tipul unei clase din cele trei
 pe care le-aţi implementat deja (relatie de has-a).
