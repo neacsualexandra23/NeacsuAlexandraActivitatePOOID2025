@@ -66,3 +66,11 @@ Pentru aceasta clasa implemetnati metodele specifice claselor, geteri si seteri 
 atributele si 3 operatori la alegere.
 Fisierul cu codul sursa il incarcati pe GITHUB in repo-ul creat in faza 0 pana pe data 22
 noiembrie 2023. Incercati sa lucrati in acelasi fisier, nu creati mai multe fisiere
+
+Proiect - Faza 6
+================
+Pentru clasele implementate adaugati metode sau operatori care sa lucreze cu fisiere text si sau
+fisiere binare.
+Aveti 4 clase in acest moment in proiect. Pentru cel putin doua dintre ele adaugati metode sau
+operatori de lucru cu fisiere text, iar pentru cel putin doua dintre ele adaugati metode sau
+operatori de lucru cu fisiere binare.
