@@ -606,6 +606,100 @@ void MarestePreturi(Magazin& magazin, float procent) {
     }
 }
 
+// Faza 5 : o noua clasa CadouCraciun care conține un obiect de tip Articol (relație has-a)
+// Clasa CadouCraciun - are un articol cadou  
+
+class CadouCraciun {
+private:
+    Articol articol;
+    string destinatar;
+    bool esteImpachetat;
+    string mesajPersonalizat;
+
+public:
+    // Constructori
+    CadouCraciun() : articol(), destinatar("Necunoscut"), esteImpachetat(false), mesajPersonalizat("") {}
+
+    CadouCraciun(const Articol& art, const string& dest, bool impachetat, const string& mesaj)
+        : articol(art), destinatar(dest), esteImpachetat(impachetat), mesajPersonalizat(mesaj) {}
+
+    // Copy constructor
+    CadouCraciun(const CadouCraciun& other)
+        : articol(other.articol), destinatar(other.destinatar), esteImpachetat(other.esteImpachetat), mesajPersonalizat(other.mesajPersonalizat) {}
+
+    // Getteri
+    Articol getArticol() const {
+        return articol;
+    }
+
+    string getDestinatar() const {
+        return destinatar;
+    }
+
+    bool getEsteImpachetat() const {
+        return esteImpachetat;
+    }
+
+    string getMesajPersonalizat() const {
+        return mesajPersonalizat;
+    }
+
+    // Setteri
+    void setArticol(const Articol& art) {
+        articol = art;
+    }
+
+    void setDestinatar(const string& dest) {
+        destinatar = dest;
+    }
+
+    void setEsteImpachetat(bool impachetat) {
+        esteImpachetat = impachetat;
+    }
+
+    void setMesajPersonalizat(const string& mesaj) {
+        mesajPersonalizat = mesaj;
+    }
+
+    // Metoda de afisare
+    void AfisareCadou() const {
+        cout << "Cadou pentru: " << destinatar << endl;
+        cout << "Impachetat: " << (esteImpachetat ? "Da" : "Nu") << endl;
+        cout << "Mesaj: " << mesajPersonalizat << endl;
+        cout << "Articol cadou: " << articol << endl;
+    }
+
+    // Operator =
+    CadouCraciun& operator=(const CadouCraciun& other) {
+        if (this != &other) {
+            articol = other.articol;
+            destinatar = other.destinatar;
+            esteImpachetat = other.esteImpachetat;
+            mesajPersonalizat = other.mesajPersonalizat;
+        }
+        return *this;
+    }
+
+    // Operator ==
+    bool operator==(const CadouCraciun& other) const {
+        return destinatar == other.destinatar && articol == other.articol;
+    }
+
+    // Operator !
+    bool operator!() const {
+        return mesajPersonalizat.empty();
+    }
+
+    // Operator <<
+    friend ostream& operator<<(ostream& out, const CadouCraciun& cadou) {
+        out << "Cadou pentru " << cadou.destinatar
+            << ", Impachetat: " << (cadou.esteImpachetat ? "Da" : "Nu")
+            << ", Mesaj: \"" << cadou.mesajPersonalizat << "\""
+            << ", Articol: [" << cadou.articol << "]";
+        return out;
+    }
+};
+
 
 int main() {
     Angajat angajat1;
@@ -918,6 +1012,29 @@ int main() {
     delete[] vAng;
     delete[] vArt;
     delete[] vMag;
+
+    
+    // ======================= TESTARE CadouCraciun ========================
+    cout << "\n=== TESTARE CLASA CadouCraciun ===\n";
+
+    string ingredienteCadou[] = { "Zahar", "Scortisoara", "Faina" };
+    Articol prajituraCadou("Prajitura de Craciun", 15.0f, 20, ingredienteCadou, 3);
+  //  CadouCraciun(const Articol& art, const string& dest, bool impachetat, const string& mesaj)
+    CadouCraciun cadou1(prajituraCadou, "Maria Popescu", true, "Sarbatori fericite!" );
+    CadouCraciun cadou2 = cadou1;  // testare constructor copiere
+  
+
+    cout << "Cadou 1:\n" << cadou1 << endl;
+    cout << "Cadou 2:\n" << cadou2 << endl;
+
+    // Test operator ==
+    if (cadou1 == cadou2) {
+        cout << "Cele doua cadouri sunt identice.\n";
+    }
+    else {
+        cout << "Cadourile sunt diferite.\n";
+    }
+
 
 
 
