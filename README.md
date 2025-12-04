@@ -64,8 +64,7 @@ Pentru noua clasa adaugati si alte atribute pe langa acesta. Puteti sa aveti rel
 celelalte clase daca doriti.
 Pentru aceasta clasa implemetnati metodele specifice claselor, geteri si seteri pentru toate
 atributele si 3 operatori la alegere.
-Fisierul cu codul sursa il incarcati pe GITHUB in repo-ul creat in faza 0 pana pe data 22
-noiembrie 2023. Incercati sa lucrati in acelasi fisier, nu creati mai multe fisiere
+
 
 Proiect - Faza 6
 ================
