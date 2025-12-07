@@ -74,8 +74,8 @@ Aveti 4 clase in acest moment in proiect. Pentru cel putin doua dintre ele adaug
 operatori de lucru cu fisiere text, iar pentru cel putin doua dintre ele adaugati metode sau
 operatori de lucru cu fisiere binare.
 
-Proiect - Faza 7
-================
+Proiect - Faza 7 👍
+===================
 În cadrul proiectului adăugați alte două clase care să moștenească una, doua dintre clasele
 existente deja in proiect. Aveți grijă să fie realizată relația de "is-a".
 Pentru noile clase adăugați atribute specifice și metode specifice precum: constructori, get-eri,
