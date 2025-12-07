@@ -606,7 +606,7 @@ void MarestePreturi(Magazin& magazin, float procent) {
     }
 }
 
-// Faza 5 : o noua clasa CadouCraciun care conține un obiect de tip Articol (relație has-a)
+// Faza 5 : o noua clasa CadouCraciun care conține un obiect de tip Articol (relatie has-a)
 // Clasa CadouCraciun - are un articol cadou  
 
 class CadouCraciun {
@@ -697,6 +697,69 @@ public:
             << ", Mesaj: \"" << cadou.mesajPersonalizat << "\""
             << ", Articol: [" << cadou.articol << "]";
         return out;
+    }
+};
+
+// Faza 7  CLASE DERIVATE  Manager  si ArticolPerisabil  ( relatia is-a)
+
+class Manager : public Angajat {
+private:
+    int nrSubordonati;
+    string departament;
+
+
+public:
+    Manager() : Angajat(), nrSubordonati(0), departament("Necunoscut") {}
+
+
+    Manager(const string& nume, const string& prenume, const string& cnp, const char* functie,
+        int nrSubordonati, const string& departament)
+        : Angajat(nume, prenume, cnp, functie), nrSubordonati(nrSubordonati), departament(departament) {}
+
+
+    int getNrSubordonati() const { return nrSubordonati; }
+    string getDepartament() const { return departament; }
+
+
+    void setNrSubordonati(int nr) { nrSubordonati = nr; }
+    void setDepartament(const string& dep) { departament = dep; }
+
+
+    void afisareManager() const {
+        cout << "Manager: " << getNume() << " " << getPrenume() << ", Departament: " << departament
+            << ", Nr. subordonati: " << nrSubordonati << endl;
+    }
+};
+
+
+class ArticolPerisabil : public Articol {
+private:
+    string dataExpirare;
+    bool necesitaRefrigerare;
+
+
+public:
+    ArticolPerisabil() : Articol(), dataExpirare("Necunoscuta"), necesitaRefrigerare(false) {}
+
+
+    ArticolPerisabil(const string& nume, float pret, int nrBucati,
+        const string* ingrediente, int nrIngrediente,
+        const string& dataExp, bool refrigerare)
+        : Articol(nume, pret, nrBucati, ingrediente, nrIngrediente),
+        dataExpirare(dataExp), necesitaRefrigerare(refrigerare) {}
+
+
+    string getDataExpirare() const { return dataExpirare; }
+    bool getNecesitaRefrigerare() const { return necesitaRefrigerare; }
+
+
+    void setDataExpirare(const string& data) { dataExpirare = data; }
+    void setNecesitaRefrigerare(bool val) { necesitaRefrigerare = val; }
+
+
+    void afisarePerisabil() const {
+        cout << "Articol Perisabil: " << getNume() << ", expira la: " << dataExpirare
+            << ", Necesita refrigerare: " << (necesitaRefrigerare ? "Da" : "Nu") << endl;
     }
 };
 
@@ -1035,6 +1098,38 @@ int main() {
         cout << "Cadourile sunt diferite.\n";
     }
 
+    // ======================= TESTARE CLASA Manager ========================
+    cout << "\n=== TESTARE CLASA Manager (IS-A Angajat) ===\n";
+
+    Manager manager1("Ionescu", "Mihai", "1987654321098", "Manager General", 15, "Productie");
+    manager1.afisareManager();
+
+    manager1.setNrSubordonati(20);
+    manager1.setDepartament("Logistica");
+
+    cout << "Dupa modificari:\n";
+    manager1.afisareManager();
+
+
+    // ======================= TESTARE CLASA ArticolPerisabil ========================
+    cout << "\n=== TESTARE CLASA ArticolPerisabil (IS-A Articol) ===\n";
+
+    string ingPerisabile[] = { "Lapte", "Zahar" };
+
+    ArticolPerisabil iaurt(
+        "Iaurt Natural",
+        3.5f,
+        50,
+        ingPerisabile,
+        2,
+        "15-02-2025",
+        true
+    );
+
+    iaurt.afisarePerisabil();
+
+    cout << "Data expirarii: " << iaurt.getDataExpirare() << endl;
+    cout << "Necesita refrigerare? " << (iaurt.getNecesitaRefrigerare() ? "Da" : "Nu") << endl;
 
 
 
