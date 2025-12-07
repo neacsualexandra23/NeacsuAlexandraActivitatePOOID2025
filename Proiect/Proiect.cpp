@@ -1098,7 +1098,7 @@ int main() {
         cout << "Cadourile sunt diferite.\n";
     }
 
-    // ======================= TESTARE CLASA Manager ========================
+    // Faza 7 TESTARE CLASA Manager 
     cout << "\n=== TESTARE CLASA Manager (IS-A Angajat) ===\n";
 
     Manager manager1("Ionescu", "Mihai", "1987654321098", "Manager General", 15, "Productie");
@@ -1111,10 +1111,11 @@ int main() {
     manager1.afisareManager();
 
 
-    // ======================= TESTARE CLASA ArticolPerisabil ========================
+    // Faza 7 TESTARE CLASA ArticolPerisabil 
     cout << "\n=== TESTARE CLASA ArticolPerisabil (IS-A Articol) ===\n";
 
     string ingPerisabile[] = { "Lapte", "Zahar" };
+
 
     ArticolPerisabil iaurt(
         "Iaurt Natural",
