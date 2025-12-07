@@ -55,7 +55,7 @@ Creați-vă o matrice de obiecte de tipul unei clase la alegere din cele trei.
 Citiți obiectele din acea matrice și le afișați la consolă.
 
 Proiect - Faza 5 👍
-=================
+==================
 Realizaţi o nouă clasă în proiect care să aibă cel puţin un atribut de tipul unei clase din cele trei
 pe care le-aţi implementat deja (relatie de has-a).
 Atributul poate fi un simplu obiect, un pointer, un vector de obiecte sau un vector de pointeri.
@@ -66,8 +66,8 @@ Pentru aceasta clasa implemetnati metodele specifice claselor, geteri si seteri 
 atributele si 3 operatori la alegere.
 
 
-Proiect - Faza 6
-================
+Proiect - Faza 6 👍
+===================
 Pentru clasele implementate adaugati metode sau operatori care sa lucreze cu fisiere text si sau
 fisiere binare.
 Aveti 4 clase in acest moment in proiect. Pentru cel putin doua dintre ele adaugati metode sau
