@@ -65,7 +65,6 @@ celelalte clase daca doriti.
 Pentru aceasta clasa implemetnati metodele specifice claselor, geteri si seteri pentru toate
 atributele si 3 operatori la alegere.
 
-
 Proiect - Faza 6 👍
 ===================
 Pentru clasele implementate adaugati metode sau operatori care sa lucreze cu fisiere text si sau
