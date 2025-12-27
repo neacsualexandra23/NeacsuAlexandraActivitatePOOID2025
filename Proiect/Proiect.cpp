@@ -1117,15 +1117,9 @@ int main() {
     string ingPerisabile[] = { "Lapte", "Zahar" };
 
 
-    ArticolPerisabil iaurt(
-        "Iaurt Natural",
-        3.5f,
-        50,
-        ingPerisabile,
-        2,
-        "15-02-2025",
-        true
+    ArticolPerisabil iaurt( "Iaurt Natural",  3.5f,    50,   ingPerisabile,   2,    "15-02-2025",   true
     );
+
 
     iaurt.afisarePerisabil();
 
